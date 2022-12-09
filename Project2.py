@@ -1,6 +1,5 @@
 import numpy as np
 import random as rd
-import copy as dp
 
 def calculate_euclideanDistance(row1, row2, current_set:list ):
     distance = .0
@@ -124,7 +123,7 @@ def backward_search_demo(data):
         best_accuracy_so_far = 0
 
         for j in range (1,len(data[0])):
-            print("J value: ", j)
+            #print("J value: ", j)
             if j in current_set:
                 print("--Considering removing the " + str(j) + " feature")
                 accuracy = backward_cross_validation(data, current_set, j)
@@ -144,12 +143,15 @@ def backward_search_demo(data):
 
 
 
-print("Testing Output")
-data = np.loadtxt('CS170_Small_Data__6.txt')
-#print(data[])
-current_set = []
-numOfFeatures = data[1].size - 1
+print("Welcome to Karan's Feature Selection Algorithm")
+filename = input('Type in the name of the file to test: \n')
+#data = np.loadtxt('CS170_Small_Data__48.txt')
+data = np.loadtxt(filename)
+algotype = input("Press 1 for the Forward Selection Algorithm or Press 2 for Backward Elimination \n")
 
-#feature_search_demo(data)
-backward_search_demo(data)
+print("Running nearest neighbor with all ")
+if algotype == "2":
+    backward_search_demo(data)
+else:
+    feature_search_demo(data)
 
